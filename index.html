@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cómo le hago? — Guías paso a paso</title>
+<meta name="description" content="Tutoriales claros para resolver problemas del día a día: trámites, dinero, tecnología y trabajos en casa.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿Cómo le hago? — Guías paso a paso">
+<meta property="og:description" content="161 guías con pasos claros y cortos: trámites, dinero, tecnología y trabajos en casa. Toca y sigue el paso a paso.">
+<meta property="og:url" content="https://apolobelden-sketch.github.io/C-mo-le-hago-/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="¿Cómo le hago? — Guías paso a paso">
+<meta name="twitter:description" content="161 guías con pasos claros y cortos para resolver problemas del día a día.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#20262B">
+
+<!--
+  GOOGLE ADSENSE — actívalo cuando Google apruebe tu cuenta en adsense.google.com
+  1) Descomenta la siguiente línea y pega tu ID de cliente (empieza con "ca-pub-")
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-TU-ID-AQUI" crossorigin="anonymous"></script>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div id="listView">
+  <header class="top">
+    <div class="top-row">
+      <div class="brand">
+        <h1>¿Cómo le hago?</h1>
+        <span class="tag mono">Guías reales</span>
+      </div>
+      <button type="button" class="badges-btn" id="badgesBtn" aria-label="Ver mis logros">🏅 <span id="badgesCount">0</span></button>
+      <button type="button" class="fontsize-btn" id="fontsizeBtn" aria-label="Letra más grande">🔤 A+</button>
+      <button type="button" class="lang-btn" id="langBtn" aria-label="Cambiar idioma">🌐 EN</button>
+      <button type="button" class="theme-btn" aria-label="Cambiar tema">🌙</button>
+    </div>
+    <p class="brand-sub">¿Cómo hacerlo?</p>
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Ej: correo, depósito, azulejo" autocomplete="off">
+      <button type="button" class="clear-btn hidden" aria-label="Limpiar búsqueda">×</button>
+      <button type="button" class="mic-btn" id="micBtn" aria-label="Buscar hablando">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0M12 19v3" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" class="search-btn" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="history-row hidden" id="historyRow"></div>
+    <div class="chips" id="chips"></div>
+    <div class="chips hidden" id="chipsMore"></div>
+  </header>
+  <main>
+    <div class="featured-row" id="featuredRow"></div>
+    <p class="count-line mono" id="countLine" aria-live="polite"></p>
+    <div id="cardList"></div>
+    <!--
+      ESPACIO DE ANUNCIO — descomenta cuando tengas tu ID de AdSense y tu bloque de anuncio
+      <ins class="adsbygoogle" style="display:block;margin:20px 0;"
+           data-ad-client="ca-pub-TU-ID-AQUI"
+           data-ad-slot="TU-SLOT-AQUI"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+  </main>
+</div>
+
+<div id="detail">
+  <div class="detail-header">
+    <button type="button" class="back-btn">← Volver a la lista</button>
+    <button type="button" class="favorite-detail" aria-label="Agregar a favoritos" aria-pressed="false">☆ Favorita</button>
+    <button type="button" class="share-btn" id="shareBtn" aria-label="Compartir por WhatsApp">📤 Compartir</button>
+    <button type="button" class="print-btn" id="printBtn" aria-label="Imprimir esta guía">🖨️ Imprimir</button>
+    <button type="button" class="voice-btn" id="voiceBtn" aria-label="Leer esta guía en voz alta">🔊 Leer en voz alta</button>
+    <h2 id="detailTitle"></h2>
+    <div class="detail-meta">
+      <span id="detailTime">⏱</span>
+      <span id="detailCat"></span>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <p class="progress-text" id="progressText"></p>
+  </div>
+  <div class="ia-disclaimer hidden" id="iaDisclaimer">🤖 Esta guía la generó una IA para ti al momento — revisa la información antes de usarla, sobre todo si es algo delicado (electricidad, gas, salud, dinero).</div>
+  <div class="yt-row">
+    <span class="yt-row-label mono">Buscar el video en:</span>
+    <a class="yt-link primary" id="ytLink" href="#" target="_blank" rel="noopener">
+      <span class="yt-icon youtube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.8 15.5V8.5L15.8 12z"/></svg></span>
+      <span class="yt-text">Ver en YouTube</span>
+    </a>
+    <a class="yt-link" id="ttLink" href="#" target="_blank" rel="noopener">
+      <span class="yt-icon tiktok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2 1.7 3.5 3.7 3.8v2.9c-1.4 0-2.7-.4-3.7-1.2v6.4a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.9a2.7 2.7 0 1 0 1.9 2.6V3z"/></svg></span>
+      <span class="yt-text">TikTok</span>
+    </a>
+    <a class="yt-link" id="fbLink" href="#" target="_blank" rel="noopener">
+      <span class="yt-icon facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v7H14v-7h2.5l.5-3H14V9.3c0-.2.1-.3.3-.3z"/></svg></span>
+      <span class="yt-text">Facebook</span>
+    </a>
+    </a>
+  </div>
+  <div class="detail-media hidden" id="mediaBox"></div>
+  <div class="detail-text hidden" id="detailText"></div>
+  <div class="materials hidden" id="materialsBox">
+    <h4>Lo que necesitas</h4>
+    <ul id="materialsList"></ul>
+  </div>
+  <div class="producto-box hidden" id="productoBox">
+    <a class="producto-link" id="productoLink" href="#" target="_blank" rel="noopener sponsored">
+      <span class="producto-icon">🛒</span>
+      <span class="producto-text">
+        <b>Comprar <span id="productoNombre"></span></b>
+        <span>En Mercado Libre</span>
+      </span>
+    </a>
+    <p class="producto-aviso mono">Este enlace puede darme una comisión, sin costo extra para ti.</p>
+  </div>
+  <div class="profesional-box hidden" id="profesionalBox">
+    <p class="profesional-titulo mono">¿Prefieres que lo haga alguien más?</p>
+    <div id="profesionalLista"></div>
+  </div>
+  <div class="consulta-box hidden" id="consultaBox">
+    <a class="consulta-link" id="consultaLink" href="#" target="_blank" rel="noopener">
+      💬 ¿Se te complicó? Pide ayuda personalizada conmigo
+    </a>
+  </div>
+  <div class="note-panel">
+    <label for="noteText" class="note-label">Tu nota</label>
+    <textarea id="noteText" placeholder="Escribe una nota personal para esta guía..."></textarea>
+    <div class="note-hint mono">Se guarda automáticamente en tu navegador.</div>
+  </div>
+  <div class="steps" id="stepsList"></div>
+  <div class="rating-box" id="ratingBox">
+    <p class="rating-question mono">¿Te sirvió esta guía?</p>
+    <div class="rating-buttons">
+      <button type="button" class="rating-btn" data-vote="si">👍 Sí me sirvió</button>
+      <button type="button" class="rating-btn" data-vote="no">👎 No me sirvió</button>
+    </div>
+    <p class="rating-thanks hidden" id="ratingThanks">¡Gracias por tu opinión!</p>
+  </div>
+  <div class="reset-row"><button type="button">Reiniciar mi progreso en esta guía</button></div>
+</div>
+
+<footer class="tip" id="footerTip">Guarda esta página en tu pantalla de inicio para abrirla como app. Ya funciona sin internet después de tu primera visita.</footer>
+<div class="donacion-row hidden" id="donacionRow">
+  <a class="donacion-link" id="donacionLink" href="#" target="_blank" rel="noopener">☕ Invítame un café</a>
+</div>
+
+<div class="badges-modal hidden" id="badgesModal">
+  <div class="badges-card">
+    <button type="button" class="badges-close" id="badgesClose" aria-label="Cerrar">×</button>
+    <h3>Tus logros</h3>
+    <p class="mono" id="badgesTotal">0 guías completadas</p>
+    <div class="badges-grid" id="badgesGrid"></div>
+    <button type="button" class="reset-all-btn" id="resetAllBtn">🗑️ Borrar todos mis datos guardados</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="ahorro-module.js"></script>
+
+</body>
+</html>

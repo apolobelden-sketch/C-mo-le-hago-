@@ -1,0 +1,15 @@
+{
+  "name": "¿Cómo le hago? — Guías paso a paso",
+  "short_name": "Cómo le hago",
+  "description": "Tutoriales claros para resolver problemas del día a día: trámites, dinero, tecnología y trabajos en casa.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EDE8DE",
+  "theme_color": "#20262B",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
