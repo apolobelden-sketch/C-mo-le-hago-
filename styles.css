@@ -72,7 +72,7 @@
 
   .top-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
   .top-row .brand{flex:1;min-width:140px;}
-  .badges-btn,.fontsize-btn,.lang-btn,.theme-btn{font-size:.8rem;padding:0 9px;height:36px;border:none;border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;}
+  .badges-btn,.fontsize-btn,.lang-btn,.theme-btn,.racha-btn{font-size:.8rem;padding:0 9px;height:36px;border:none;border-radius:10px;background:var(--surface);color:var(--ink);cursor:pointer;}
   .fontsize-btn.active,.lang-btn.active{background:var(--ink);color:var(--paper);}
 
   html[data-fontsize="grande"]{font-size:118%;}
@@ -114,6 +114,36 @@
   .history-item:hover{background:var(--surface-soft);}
   .history-clear{flex:none;padding:7px 12px;border-radius:999px;border:1px dashed var(--line);background:var(--paper);color:var(--ink-soft);font-size:.8rem;cursor:pointer;}
   .highlight{background:var(--focus);color:var(--paper);padding:0 2px;border-radius:3px;}
+
+  /* LIVES DE VENTA */
+  .lives-section{margin-top:14px;}
+  .lives-section.hidden{display:none;}
+
+  .mis-videos-section{margin-top:14px;}
+  .mis-videos-section.hidden{display:none;}
+  .mis-videos-titulo{font-size:.78rem;color:var(--ink-soft);margin-bottom:8px;}
+  .mis-videos-embed{width:100%;aspect-ratio:16/9;border:none;border-radius:14px;background:#000;display:block;}
+  .lives-titulo{font-size:.78rem;color:var(--danger);font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:4px;}
+  .lives-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;}
+  .live-card{flex:none;width:220px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;}
+  .live-embed{width:220px;height:124px;border:none;display:block;background:#000;}
+  .live-plataforma{position:absolute;top:8px;left:8px;z-index:2;font-size:.62rem;font-weight:700;letter-spacing:.04em;padding:3px 7px;border-radius:5px;color:#fff;}
+  .live-plataforma-youtube{background:#E23744;}
+  .live-plataforma-facebook{background:#3E6E9E;}
+  .live-plataforma-tiktok{background:#000;}
+  .live-tiktok-box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:220px;height:124px;background:#000;color:#fff;text-decoration:none;font-size:.82rem;font-weight:600;}
+  .live-tiktok-play{width:40px;height:40px;border-radius:50%;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+  .live-info{padding:10px 12px;}
+  .live-vendedor{font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:5px;}
+  .live-vendedor::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--live-dot-color, var(--danger));flex:none;animation:liveDot 1.4s infinite;}
+  @keyframes liveDot{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .live-producto-link{display:block;margin-top:8px;padding:8px 10px;background:var(--ambar);color:#fff;text-align:center;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700;}
+  .live-proximo-box{width:220px;height:124px;background:var(--surface-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+  .live-proximo-badge{font-size:.68rem;font-weight:700;letter-spacing:.05em;color:var(--ink-soft);background:var(--paper);padding:3px 8px;border-radius:6px;}
+  .live-proximo-cuando{font-size:1.1rem;font-weight:700;color:var(--ink);}
+  .live-calendario-link{display:block;margin-top:8px;padding:8px 10px;background:var(--surface-soft);color:var(--ink);text-align:center;border-radius:8px;text-decoration:none;font-size:.78rem;font-weight:600;}
+  .lives-cta-row{margin:12px 0 6px;text-align:center;}
+  .lives-cta{display:inline-block;padding:9px 16px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-soft);text-decoration:none;font-size:.78rem;}
 
   .chips{display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:2px;}
   .chip{flex:none;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:.83rem;font-weight:500;cursor:pointer;color:var(--ink-soft);}

@@ -6,6 +6,32 @@ const CONSULTA_WHATSAPP = '';
 // Tu link de donación (Mercado Pago, PayPal.me, Ko-fi, etc.)
 const DONACION_LINK = '';
 
+// ===== Tus propios videos (carrusel gratis, sin límite, sin API) =====
+// 1) Crea o usa tu canal de YouTube y sube tus videos ahí.
+// 2) Ve a tu canal → pestaña "Videos" → copia el ID que aparece en la URL después de "list=" en tu playlist de "Subidos".
+//    (Truco fácil: el ID de tu canal empieza con "UC...", tu playlist de subidos es igual pero cambiando "UC" por "UU".)
+// 3) Pégalo aquí abajo. Se actualiza solo cada vez que subas un video nuevo.
+const MIS_VIDEOS_PLAYLIST_ID = '';
+
+// ===== Lives de venta =====
+// Tu WhatsApp para que vendedores te pidan un espacio de live (con código de país, sin + ni espacios)
+const LIVES_WHATSAPP = '';
+
+// Cada live:
+//   id: identificador único corto, sin espacios (sirve para el link directo que le das al vendedor)
+//   vendedor: nombre del negocio
+//   plataforma: 'youtube', 'facebook' o 'tiktok'
+//   embedUrl: link "embed" (solo para youtube/facebook — TikTok no permite incrustar lives, se usa "urlDirecta" en su lugar)
+//   urlDirecta: para TikTok — el link directo a su live (se abre en TikTok, no se incrusta)
+//   productoLink: a dónde comprar
+//   activo: true cuando el live YA está transmitiendo
+//   fechaProgramada: fecha y hora del live en formato 'YYYY-MM-DDTHH:MM' (para mostrar cuenta regresiva antes de que empiece)
+// Ejemplos:
+// { id:'tornillo-01', vendedor:'Ferretería El Tornillo', plataforma:'youtube', embedUrl:'', productoLink:'', activo:false, fechaProgramada:'2026-07-15T18:00' }
+// { id:'ropa-02', vendedor:'Boutique Ana', plataforma:'tiktok', urlDirecta:'https://www.tiktok.com/@usuario/live', productoLink:'', activo:true }
+const LIVES = [];
+// ================================================================
+
 // ===== Directorio de profesionales por oficio =====
 // Para agregar uno: nombre, WhatsApp (con código de país, sin + ni espacios) y sus coordenadas (lat, lng).
 // Para sacar las coordenadas: busca su negocio en Google Maps, toca y mantén sobre el punto, copia los números que aparecen.
@@ -38,6 +64,7 @@ function pedirUbicacion(){
     { timeout: 8000 }
   );
 }
+
 function distanciaKm(lat1, lng1, lat2, lng2){
   const R = 6371;
   const dLat = (lat2-lat1) * Math.PI/180;
@@ -51,6 +78,89 @@ function ordenarPorCercania(lista){
     const d = (p.lat && p.lng) ? distanciaKm(miUbicacion.lat, miUbicacion.lng, p.lat, p.lng) : null;
     return { ...p, distancia: d };
   }).sort((a,b) => (a.distancia ?? 999) - (b.distancia ?? 999));
+}
+
+// ===== Lives de venta =====
+function generarICS(vendedor, fechaISO){
+  const inicio = new Date(fechaISO);
+  const fin = new Date(inicio.getTime() + 60*60*1000);
+  const fmt = d => d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+    `DTSTART:${fmt(inicio)}`,`DTEND:${fmt(fin)}`,
+    `SUMMARY:Live de ${vendedor} en ¿Cómo le hago?`,
+    'DESCRIPTION:No te lo pierdas.',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  return 'data:text/calendar;charset=utf8,' + encodeURIComponent(ics);
+}
+
+function tiempoRestante(fechaISO){
+  const diff = new Date(fechaISO) - new Date();
+  if(diff <= 0) return null;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  if(h >= 24){ const d = Math.floor(h/24); return `en ${d} día${d>1?'s':''}`; }
+  if(h > 0) return `en ${h}h ${m}min`;
+  return `en ${m} min`;
+}
+
+function cargarLivesVenta(){
+  const seccion = document.getElementById('livesSection');
+  const scroll = document.getElementById('livesScroll');
+  const ctaBtn = document.getElementById('livesCtaBtn');
+  if(!seccion || !scroll) return;
+
+  const activos = LIVES.filter(l => l.activo && (l.embedUrl || l.urlDirecta));
+  const programados = LIVES.filter(l => !l.activo && l.fechaProgramada && new Date(l.fechaProgramada) > new Date());
+
+  if(activos.length === 0 && programados.length === 0){
+    seccion.classList.add('hidden');
+  } else {
+    seccion.classList.remove('hidden');
+
+    const badgePlataforma = { youtube:'YOUTUBE', facebook:'FACEBOOK', tiktok:'TIKTOK' };
+
+    const htmlActivos = activos.map(l => {
+      const badge = `<span class="live-plataforma live-plataforma-${l.plataforma}">${badgePlataforma[l.plataforma] || ''}</span>`;
+      const cuerpo = (l.plataforma === 'tiktok')
+        ? `<a class="live-tiktok-box" href="${l.urlDirecta}" target="_blank" rel="noopener">
+             <span class="live-tiktok-play">▶</span>
+             <span>Ver en TikTok Live</span>
+           </a>`
+        : `<iframe class="live-embed" src="${l.embedUrl}" allowfullscreen loading="lazy"></iframe>`;
+      return `
+      <div class="live-card" id="${l.id ? 'live-'+l.id : ''}">
+        ${badge}
+        ${cuerpo}
+        <div class="live-info">
+          <p class="live-vendedor">${l.vendedor}</p>
+          ${l.productoLink ? `<a class="live-producto-link" href="${l.productoLink}" target="_blank" rel="noopener sponsored">🛒 Ver producto en venta</a>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+
+    const htmlProgramados = programados.map(l => `
+      <div class="live-card live-proximo" id="${l.id ? 'live-'+l.id : ''}">
+        <div class="live-proximo-box">
+          <span class="live-proximo-badge">PRÓXIMO LIVE</span>
+          <p class="live-proximo-cuando">${tiempoRestante(l.fechaProgramada) || 'muy pronto'}</p>
+        </div>
+        <div class="live-info">
+          <p class="live-vendedor" style="--live-dot-color:var(--ink-soft)">${l.vendedor}</p>
+          <a class="live-calendario-link" href="${generarICS(l.vendedor, l.fechaProgramada)}" download="live-${l.id||'evento'}.ics">📅 Agregar a mi calendario</a>
+        </div>
+      </div>`).join('');
+
+    scroll.innerHTML = htmlActivos + htmlProgramados;
+  }
+
+  if(ctaBtn && LIVES_WHATSAPP){
+    const msg = 'Hola, quiero hacer un live de ventas en la app ¿Cómo le hago?';
+    ctaBtn.href = `https://wa.me/${LIVES_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  } else if(ctaBtn){
+    ctaBtn.style.display = 'none';
+  }
 }
 
 const ICONS = {
@@ -2561,6 +2671,40 @@ const HITOS = [
   { cantidad:100, icono:'👑', etiqueta:'100 guías' }
 ];
 
+// ===== Racha diaria (como Duolingo: entra seguido y sube) =====
+const HITOS_RACHA = [3, 7, 14, 30, 60, 100];
+
+function fechaISO(date){ return date.toISOString().slice(0,10); }
+
+function actualizarRacha(){
+  try{
+    const hoy = fechaISO(new Date());
+    const data = JSON.parse(localStorage.getItem('rachaDiaria') || '{}');
+    let { ultimaFecha, actual, mejor } = { ultimaFecha: data.ultimaFecha || null, actual: data.actual || 0, mejor: data.mejor || 0 };
+
+    if(ultimaFecha === hoy){
+      // Ya contamos hoy, no hacer nada más
+    } else {
+      const ayer = new Date();
+      ayer.setDate(ayer.getDate() - 1);
+      if(ultimaFecha === fechaISO(ayer)){
+        actual = actual + 1;
+      } else {
+        actual = 1;
+      }
+      mejor = Math.max(actual, mejor);
+      localStorage.setItem('rachaDiaria', JSON.stringify({ ultimaFecha: hoy, actual, mejor }));
+
+      if(HITOS_RACHA.includes(actual)){
+        mostrarNotificacionLogro({ icono:'🔥', etiqueta: actual + ' días seguidos' });
+      }
+    }
+
+    const el = document.getElementById('rachaCount');
+    if(el) el.textContent = actual;
+  }catch(e){}
+}
+
 function loadCompletadas(){
   try{ return JSON.parse(localStorage.getItem('guiasCompletadas') || '[]'); }catch(e){ return []; }
 }
@@ -2787,6 +2931,16 @@ if(langBtn){
   langBtn.addEventListener('click', toggleLanguage);
 }
 
+const rachaBtn = document.getElementById('rachaBtn');
+if(rachaBtn){
+  rachaBtn.addEventListener('click', function(){
+    try{
+      const data = JSON.parse(localStorage.getItem('rachaDiaria') || '{}');
+      alert(`Racha actual: ${data.actual || 0} días\nTu mejor racha: ${data.mejor || 0} días`);
+    }catch(e){}
+  });
+}
+
 if(badgesBtn){
   badgesBtn.addEventListener('click', function(){
     renderBadgesModal();
@@ -2806,7 +2960,7 @@ if(resetAllBtn){
     const claves = Object.keys(localStorage).filter(k =>
       k === 'appState' || k === 'guiasGeneradasIA' || k === 'guiasCompletadas' ||
       k === 'calificacionesGuias' || k === 'busquedasSinResultado' || k === 'clicsProductos' ||
-      k === 'geminiApiKey' || k.startsWith('progreso_')
+      k === 'geminiApiKey' || k === 'rachaDiaria' || k.startsWith('progreso_')
     );
     claves.forEach(k => localStorage.removeItem(k));
     location.reload();
@@ -2881,6 +3035,14 @@ async function iniciarApp(){
   renderHistory();
   renderList();
   actualizarBadgesCount();
+  actualizarRacha();
+  cargarLivesVenta();
+
+  const misVideosSection = document.getElementById('misVideosSection');
+  if(misVideosSection && MIS_VIDEOS_PLAYLIST_ID){
+    misVideosSection.classList.remove('hidden');
+    document.getElementById('misVideosEmbed').src = `https://www.youtube.com/embed/videoseries?list=${MIS_VIDEOS_PLAYLIST_ID}`;
+  }
 
   const donacionRow = document.getElementById('donacionRow');
   if(donacionRow && DONACION_LINK){
@@ -2890,7 +3052,14 @@ async function iniciarApp(){
 
   if(location.hash){
     const sharedId = location.hash.slice(1);
-    if(TUTORIALS.some(t => t.id === sharedId)) openDetail(sharedId);
+    if(TUTORIALS.some(t => t.id === sharedId)){
+      openDetail(sharedId);
+    } else if(sharedId.startsWith('live-')){
+      setTimeout(() => {
+        const el = document.getElementById(sharedId);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 300);
+    }
   }
 }
 iniciarApp();
