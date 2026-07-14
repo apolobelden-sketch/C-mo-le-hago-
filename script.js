@@ -11,7 +11,7 @@ const DONACION_LINK = '';
 // 2) Ve a tu canal → pestaña "Videos" → copia el ID que aparece en la URL después de "list=" en tu playlist de "Subidos".
 //    (Truco fácil: el ID de tu canal empieza con "UC...", tu playlist de subidos es igual pero cambiando "UC" por "UU".)
 // 3) Pégalo aquí abajo. Se actualiza solo cada vez que subas un video nuevo.
-const MIS_VIDEOS_PLAYLIST_ID = '';
+const MIS_VIDEOS_PLAYLIST_ID = 'UU7VOo8nlwERziFajtcDPMQg';
 
 // ===== Lives de venta =====
 // Tu WhatsApp para que vendedores te pidan un espacio de live (con código de país, sin + ni espacios)
@@ -284,7 +284,7 @@ const TUTORIALS = [
   },
   {
     id: 'pegar-azulejo',
-    producto: { nombre: 'Adhesivo y boquilla para azulejo', link: 'https://listado.mercadolibre.com.mx/adhesivo-para-azulejo' },
+    producto: { nombre: 'Adhesivo y boquilla para azulejo', link: 'https://meli.la/2GtHR8P' },
     destacada: true,
     cat: 'hogar',
     title: 'Pegar azulejo en el piso',
@@ -306,7 +306,7 @@ const TUTORIALS = [
   },
   {
     id: 'bisagras-puerta',
-    producto: { nombre: 'Bisagras para puerta', link: 'https://listado.mercadolibre.com.mx/bisagras-para-puerta' },
+    producto: { nombre: 'Bisagras para puerta', link: 'https://meli.la/2sP35kR' },
     cat: 'hogar',
     title: 'Cambiar las bisagras de una puerta',
     summary: 'Para que deje de rechinar o cierre chueco.',
@@ -324,7 +324,7 @@ const TUTORIALS = [
   },
   {
     id: 'excusado-mecanismo',
-    producto: { nombre: 'Mecanismo de excusado (flotador y válvula)', link: 'https://listado.mercadolibre.com.mx/mecanismo-de-excusado' },
+    producto: { nombre: 'Mecanismo de excusado (flotador y válvula)', link: 'https://meli.la/2gifNeD' },
     cat: 'hogar',
     title: 'Cambiar el mecanismo del excusado',
     summary: 'Cuando no deja de correr agua o no jala bien.',
@@ -343,7 +343,7 @@ const TUTORIALS = [
   },
   {
     id: 'cambiar-foco',
-    producto: { nombre: 'Foco LED', link: 'https://listado.mercadolibre.com.mx/foco-led' },
+    producto: { nombre: 'Foco LED', link: 'https://meli.la/2Kh9aJa' },
     destacada: true,
     cat: 'hogar',
     title: 'Cambiar un foco',
@@ -362,7 +362,7 @@ const TUTORIALS = [
   {
     id: 'colgar-repisa',
     categoriaProfesional: 'Carpintero',
-    producto: { nombre: 'Kit de repisa con soportes', link: 'https://listado.mercadolibre.com.mx/repisa-con-soportes' },
+    producto: { nombre: 'Kit de repisa con soportes', link: 'https://meli.la/1aXowqe' },
     cat: 'hogar',
     title: 'Colgar o cambiar una repisa',
     summary: 'Para que quede firme y bien nivelada.',
@@ -566,7 +566,7 @@ const TUTORIALS = [
       {icon:'drop', title:'Enjuaga con agua caliente', text:'Para arrastrar lo que se soltó.', warn:'No mezcles productos químicos destapacaños distintos entre sí.'}
     ]
   },
-  { id:'cambiar-apagador', producto:{ nombre:'Apagador o contacto de luz', link:'https://listado.mercadolibre.com.mx/apagador-de-luz' }, categoriaProfesional:'Electricista', cat:'hogar', title:'Cambiar un apagador o contacto', summary:'Con la corriente apagada, siempre.', time:'20 min', youtubeQuery:'como cambiar un apagador de luz paso a paso',
+  { id:'cambiar-apagador', producto:{ nombre:'Apagador o contacto de luz', link:'https://meli.la/1JPySD1' }, categoriaProfesional:'Electricista', cat:'hogar', title:'Cambiar un apagador o contacto', summary:'Con la corriente apagada, siempre.', time:'20 min', youtubeQuery:'como cambiar un apagador de luz paso a paso',
     materials:['Apagador o contacto nuevo', 'Desarmador de cruz y plano', 'Probador de corriente'],
     steps:[
       {icon:'plug', title:'Apaga el interruptor general', text:'O el de ese circuito específico.'},
