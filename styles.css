@@ -69,6 +69,7 @@
   .brand h1{font-size:1.5rem;font-weight:700;}
   .brand span.tag{font-size:.72rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;}
   .brand-sub{margin-top:4px;color:var(--ink);font-size:1.35rem;font-weight:700;font-family:var(--font-display);}
+  .emergencia-btn{display:block;width:100%;margin-top:10px;padding:11px;border:none;border-radius:10px;background:var(--danger);color:#fff;font-size:.86rem;font-weight:700;cursor:pointer;}
 
   .top-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
   .top-row .brand{flex:1;min-width:140px;}
@@ -281,6 +282,13 @@
 
   .reset-row{margin:0 16px 30px;text-align:center;}
   .reset-row button{background:none;border:1px solid var(--line);color:var(--ink-soft);padding:9px 16px;border-radius:8px;font-size:.8rem;font-family:inherit;cursor:pointer;}
+
+  .relacionadas-box{margin:0 16px 20px;}
+  .relacionadas-box.hidden{display:none;}
+  .relacionadas-titulo{font-size:.78rem;color:var(--ink-soft);margin-bottom:8px;}
+  .relacionada-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;text-decoration:none;color:var(--ink);}
+  .relacionada-item .tab{width:5px;align-self:stretch;border-radius:3px;flex:none;}
+  .relacionada-item span{font-size:.86rem;font-weight:600;}
 
   footer.tip{max-width:640px;margin:0 auto;padding:0 16px 50px;text-align:center;color:var(--ink-soft);font-size:.78rem;line-height:1.5;}
 
@@ -531,6 +539,17 @@
   .badge-item.unlocked .badge-icon{background:var(--ambar-bg);}
   .badge-label{font-size:.72rem;color:var(--ink-soft);}
   .reset-all-btn{margin-top:18px;background:none;border:1px solid var(--danger);color:var(--danger);padding:9px 14px;border-radius:8px;font-size:.78rem;cursor:pointer;}
+
+  /* BITÁCORA DE MANTENIMIENTO */
+  .bitacora-btn{position:relative;}
+  .bitacora-alerta{position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--danger);}
+  .bitacora-alerta.hidden{display:none;}
+  .bitacora-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;}
+  .bitacora-item.vencido{border-color:var(--danger);background:var(--surface-strong);}
+  .bitacora-item-titulo{font-size:.85rem;font-weight:600;}
+  .bitacora-item-fecha{font-size:.74rem;color:var(--ink-soft);}
+  .bitacora-item.vencido .bitacora-item-fecha{color:var(--danger);font-weight:700;}
+  .bitacora-vacio{font-size:.82rem;color:var(--ink-soft);text-align:center;padding:20px 0;}
 
   .logro-notification{
     position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);

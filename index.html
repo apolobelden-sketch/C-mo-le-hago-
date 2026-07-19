@@ -13,6 +13,7 @@
 <meta name="twitter:title" content="¿Cómo le hago? — Guías paso a paso">
 <meta name="twitter:description" content="Gratis, 100% en español. Si no puedes solo, te conectamos con un profesional o te vendemos la pieza.">
 <link rel="manifest" href="manifest.json">
+<link rel="canonical" href="https://apolobelden-sketch.github.io/C-mo-le-hago-/">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#20262B">
 
@@ -38,11 +39,13 @@
       </div>
       <button type="button" class="badges-btn" id="badgesBtn" aria-label="Ver mis logros">🏅 <span id="badgesCount">0</span></button>
       <button type="button" class="racha-btn" id="rachaBtn" aria-label="Tu racha diaria">🔥 <span id="rachaCount">0</span></button>
+      <button type="button" class="bitacora-btn" id="bitacoraBtn" aria-label="Mi bitácora de mantenimiento">📋<span class="bitacora-alerta hidden" id="bitacoraAlerta"></span></button>
       <button type="button" class="fontsize-btn" id="fontsizeBtn" aria-label="Letra más grande">🔤 A+</button>
       <button type="button" class="lang-btn" id="langBtn" aria-label="Cambiar idioma">🌐 EN</button>
       <button type="button" class="theme-btn" aria-label="Cambiar tema">🌙</button>
     </div>
     <p class="brand-sub">¿Cómo hacerlo?</p>
+    <button type="button" class="emergencia-btn" id="emergenciaBtn">🚨 Emergencias — ayuda rápida</button>
     <div class="search-row">
       <input type="text" id="searchInput" placeholder="Ej: correo, depósito, azulejo" autocomplete="off">
       <button type="button" class="clear-btn hidden" aria-label="Limpiar búsqueda">×</button>
@@ -155,6 +158,10 @@
     </div>
     <p class="rating-thanks hidden" id="ratingThanks">¡Gracias por tu opinión!</p>
   </div>
+  <div class="relacionadas-box hidden" id="relacionadasBox">
+    <p class="relacionadas-titulo mono">También te puede servir</p>
+    <div id="relacionadasLista"></div>
+  </div>
   <div class="reset-row"><button type="button">Reiniciar mi progreso en esta guía</button></div>
 </div>
 
@@ -170,6 +177,15 @@
     <p class="mono" id="badgesTotal">0 guías completadas</p>
     <div class="badges-grid" id="badgesGrid"></div>
     <button type="button" class="reset-all-btn" id="resetAllBtn">🗑️ Borrar todos mis datos guardados</button>
+  </div>
+</div>
+
+<div class="badges-modal hidden" id="bitacoraModal">
+  <div class="badges-card">
+    <button type="button" class="badges-close" id="bitacoraClose" aria-label="Cerrar">×</button>
+    <h3>Mi bitácora de mantenimiento</h3>
+    <p class="mono" style="font-size:.78rem;color:var(--ink-soft);margin-bottom:14px;">Te avisamos cuándo te toca repetir cada una.</p>
+    <div id="bitacoraLista" style="text-align:left;"></div>
   </div>
 </div>
 

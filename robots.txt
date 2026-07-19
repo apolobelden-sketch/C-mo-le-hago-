@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://apolobelden-sketch.github.io/C-mo-le-hago-/sitemap.xml

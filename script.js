@@ -164,6 +164,10 @@ function cargarLivesVenta(){
 }
 
 const ICONS = {
+  paw: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="17" cy="7" r="2"/><path d="M12 12c-4 0-6 2.5-6 5a3 3 0 0 0 6 1 3 3 0 0 0 6-1c0-2.5-2-5-6-5z"/></svg>`,
+  heart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 5c-2.5 4.5-9.5 9-9.5 9z"/></svg>`,
+  briefcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+  cake: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7M4 21h16M4 17h16M12 8V5"/></svg>`,
   eye: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>`,
   hand: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 13V5a1.5 1.5 0 0 1 3 0v6M11 11V4a1.5 1.5 0 0 1 3 0v7M14 12V6a1.5 1.5 0 0 1 3 0v8M8 13l-2 1a2 2 0 0 0-1 2c0 3 3 6 7 6h1a6 6 0 0 0 6-6v-3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   bucket: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16l-1.5 11a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8z"/><path d="M2 8h20M8 8V6a4 4 0 0 1 8 0v2" stroke-linecap="round"/></svg>`,
@@ -595,7 +599,7 @@ const TUTORIALS = [
       {icon:'check', title:'Revisa que no se tambalee', text:'Antes de acomodarlo en su lugar.'}
     ]
   },
-  { id:'cambiar-filtro-agua', producto:{ nombre:'Filtro para purificador de agua', link:'https://listado.mercadolibre.com.mx/filtro-para-purificador-de-agua' }, cat:'hogar', title:'Cambiar el filtro de un purificador', summary:'Para que el agua siga saliendo limpia.', time:'10 min', youtubeQuery:'como cambiar el filtro de un purificador de agua',
+  { id:'cambiar-filtro-agua', recordatorioMeses:6, producto:{ nombre:'Filtro para purificador de agua', link:'https://listado.mercadolibre.com.mx/filtro-para-purificador-de-agua' }, cat:'hogar', title:'Cambiar el filtro de un purificador', summary:'Para que el agua siga saliendo limpia.', time:'10 min', youtubeQuery:'como cambiar el filtro de un purificador de agua',
     materials:['Filtro nuevo (mismo modelo)', 'Trapo'],
     steps:[
       {icon:'valve', title:'Cierra la llave de agua', text:'La que alimenta el purificador.'},
@@ -1388,7 +1392,7 @@ const TUTORIALS = [
     ]
   },
 
-  { id:'llamar-911', destacada:true, cat:'hogar', title:'Qué decir al llamar al 911', summary:'Para que te ayuden más rápido.', time:'2 min', youtubeQuery:'que decir al llamar al 911 emergencia',
+  { id:'llamar-911', destacada:true, emergencia:true, cat:'hogar', title:'Qué decir al llamar al 911', summary:'Para que te ayuden más rápido.', time:'2 min', youtubeQuery:'que decir al llamar al 911 emergencia',
     materials:['Tu ubicación'],
     steps:[
       {icon:'chat', action:'Di primero', target:'qué está pasando'},
@@ -1396,7 +1400,7 @@ const TUTORIALS = [
       {icon:'check', action:'Responde', target:'las preguntas, no cuelgues primero'}
     ]
   },
-  { id:'usar-extintor', cat:'hogar', title:'Usar un extintor de incendios', summary:'La técnica PASE.', time:'2 min', youtubeQuery:'como usar un extintor tecnica pase',
+  { id:'usar-extintor', emergencia:true, cat:'hogar', title:'Usar un extintor de incendios', summary:'La técnica PASE.', time:'2 min', youtubeQuery:'como usar un extintor tecnica pase',
     materials:['Extintor cargado y vigente'],
     steps:[
       {icon:'extinguisher', action:'Jala', target:'el seguro'},
@@ -1405,7 +1409,7 @@ const TUTORIALS = [
       {icon:'check', action:'Mueve', target:'en zigzag hasta apagarlo', warn:'Si el fuego crece, sal de inmediato y llama a bomberos.'}
     ]
   },
-  { id:'primeros-auxilios-basicos', cat:'hogar', title:'Primeros auxilios básicos', summary:'Mientras llega ayuda profesional.', time:'5 min', youtubeQuery:'primeros auxilios basicos que hacer',
+  { id:'primeros-auxilios-basicos', emergencia:true, cat:'hogar', title:'Primeros auxilios básicos', summary:'Mientras llega ayuda profesional.', time:'5 min', youtubeQuery:'primeros auxilios basicos que hacer',
     materials:['Ninguno'],
     steps:[
       {icon:'shield', action:'Revisa', target:'que el lugar sea seguro para acercarte'},
@@ -1414,13 +1418,41 @@ const TUTORIALS = [
       {icon:'check', action:'Quédate', target:'con ella hasta que llegue ayuda', warn:'Esto no sustituye un curso certificado de primeros auxilios.'}
     ]
   },
-  { id:'botiquin-basico', cat:'hogar', title:'Armar un botiquín básico', summary:'Lo esencial para tener en casa.', time:'15 min', youtubeQuery:'que debe tener un botiquin basico en casa',
+  { id:'botiquin-basico', emergencia:true, cat:'hogar', title:'Armar un botiquín básico', summary:'Lo esencial para tener en casa.', time:'15 min', youtubeQuery:'que debe tener un botiquin basico en casa',
     materials:['Caja o bolsa para guardar todo'],
     steps:[
       {icon:'medkit', action:'Incluye', target:'gasas, curitas y cinta médica'},
       {icon:'drop', action:'Agrega', target:'alcohol o antiséptico'},
       {icon:'check', action:'Incluye', target:'analgésico básico y guantes'},
       {icon:'search', action:'Revisa', target:'fechas de caducidad cada año'}
+    ]
+  },
+
+  { id:'atragantamiento-que-hacer', emergencia:true, cat:'hogar', title:'Qué hacer si alguien se atraganta', summary:'Mientras llega ayuda profesional.', time:'3 min', youtubeQuery:'que hacer si alguien se atraganta maniobra heimlich',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'chat', action:'Pregúntale', target:'"¿te estás atragantando?" — si puede toser o hablar, no intervengas, solo anímalo a toser'},
+      {icon:'chat', action:'Si no puede', target:'toser, hablar ni respirar, llama al 911 de inmediato'},
+      {icon:'hand', action:'Colócate', target:'detrás de la persona, rodéala con los brazos'},
+      {icon:'wrench', action:'Da compresiones', target:'firmes hacia adentro y arriba, abajo de las costillas', warn:'Esto sustituye llamar a emergencias y buscar un curso certificado de primeros auxilios.'}
+    ]
+  },
+  { id:'quemadura-que-hacer', emergencia:true, cat:'hogar', title:'Qué hacer ante una quemadura', summary:'Los primeros minutos importan.', time:'3 min', youtubeQuery:'que hacer en caso de quemadura primeros auxilios',
+    materials:['Agua limpia'],
+    steps:[
+      {icon:'drop', action:'Enfría', target:'la zona con agua corriente tibia/fría, 10-15 min'},
+      {icon:'shield', action:'No apliques', target:'hielo, pasta de dientes, ni remedios caseros', warn:'Esos "remedios" pueden empeorar el daño en la piel.'},
+      {icon:'medkit', action:'Cubre', target:'con una gasa limpia, sin apretar'},
+      {icon:'chat', action:'Busca ayuda médica', target:'si es grande, profunda, o en cara/manos/genitales'}
+    ]
+  },
+  { id:'desmayo-que-hacer', emergencia:true, cat:'hogar', title:'Qué hacer si alguien se desmaya', summary:'Mientras llega ayuda profesional.', time:'3 min', youtubeQuery:'que hacer si alguien se desmaya primeros auxilios',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'shield', action:'Recuéstala', target:'boca arriba y eleva un poco sus piernas'},
+      {icon:'search', action:'Afloja', target:'ropa apretada (cuello, cinturón)'},
+      {icon:'check', action:'Verifica', target:'que respire; si no, llama al 911 e inicia RCP si sabes'},
+      {icon:'clock', action:'Si despierta', target:'no la levantes de golpe, dale unos minutos'}
     ]
   },
 
@@ -1534,7 +1566,7 @@ const TUTORIALS = [
       {icon:'pen', action:'Deja', target:'solo las herramientas que usas a mano'}
     ]
   },
-  { id:'cambiar-aceite-bici', cat:'hogar', title:'Cambiar el aceite de la bicicleta', summary:'Mantenimiento básico para que ruede mejor.', time:'20 min', youtubeQuery:'como cambiar el aceite de una bicicleta', costoPiezas:50, costoTaller:150,
+  { id:'cambiar-aceite-bici', recordatorioMeses:3, cat:'hogar', title:'Cambiar el aceite de la bicicleta', summary:'Mantenimiento básico para que ruede mejor.', time:'20 min', youtubeQuery:'como cambiar el aceite de una bicicleta', costoPiezas:50, costoTaller:150,
     materials:['Aceite para bicicleta', 'Trapo', 'Llave inglesa'],
     steps:[
       {icon:'wrench', action:'Suelta', target:'la tuerca del eje con la llave inglesa'},
@@ -1676,7 +1708,7 @@ const TUTORIALS = [
       {icon:'sponge', action:'Limpia', target:'el exceso de aceite con trapo'}
     ]
   },
-  { id:'instalacion-aire-acondicionado', categoriaProfesional:'Técnico en aire acondicionado', cat:'hogar', title:'Limpiar el filtro del aire acondicionado', summary:'Para que enfríe mejor y consuma menos.', time:'10 min', youtubeQuery:'como limpiar el filtro del aire acondicionado',
+  { id:'instalacion-aire-acondicionado', recordatorioMeses:3, categoriaProfesional:'Técnico en aire acondicionado', cat:'hogar', title:'Limpiar el filtro del aire acondicionado', summary:'Para que enfríe mejor y consuma menos.', time:'10 min', youtubeQuery:'como limpiar el filtro del aire acondicionado',
     materials:['Aspiradora', 'Agua', 'Trapo'],
     steps:[
       {icon:'plug', action:'Apaga', target:'el aire acondicionado'},
@@ -1706,6 +1738,137 @@ const TUTORIALS = [
     ]
   },
 
+  { id:'excel-tabla-basica', cat:'tec', title:'Hacer una tabla en Excel desde el celular', summary:'Lo básico para empezar a organizar datos.', time:'10 min', youtubeQuery:'como hacer una tabla en excel desde el celular',
+    materials:['App de Excel (gratis)'],
+    steps:[
+      {icon:'search', action:'Abre', target:'Excel y toca "Libro en blanco"'},
+      {icon:'check', action:'Toca', target:'una celda y escribe tus datos'},
+      {icon:'search', action:'Selecciona', target:'el rango de celdas → "Insertar" → "Tabla"'},
+      {icon:'check', action:'Guarda', target:'con nombre antes de salir'}
+    ]
+  },
+  { id:'excel-formula-basica', cat:'tec', title:'Hacer una fórmula básica en Excel', summary:'Sumar y sacar promedio sin saber de fórmulas.', time:'10 min', youtubeQuery:'como hacer formulas basicas en excel suma promedio',
+    materials:['Una tabla con números'],
+    steps:[
+      {icon:'search', action:'Toca', target:'la celda donde quieres el resultado'},
+      {icon:'key', action:'Escribe', target:'=SUMA( y selecciona las celdas'},
+      {icon:'check', action:'Cierra', target:'el paréntesis y presiona Enter'},
+      {icon:'search', action:'Para promedio', target:'usa =PROMEDIO( en vez de =SUMA('}
+    ]
+  },
+  { id:'word-documento-celular', cat:'tec', title:'Hacer un documento en Word desde el celular', summary:'Cartas, reportes, lo que necesites.', time:'10 min', youtubeQuery:'como hacer un documento en word desde el celular',
+    materials:['App de Word (gratis)'],
+    steps:[
+      {icon:'search', action:'Abre', target:'Word y toca "Documento en blanco"'},
+      {icon:'check', action:'Escribe', target:'tu texto normal'},
+      {icon:'gear', action:'Selecciona', target:'texto y cambia tamaño o negrita arriba'},
+      {icon:'check', action:'Guarda', target:'con nombre antes de salir'}
+    ]
+  },
+  { id:'google-docs-equipo', cat:'tec', title:'Usar Google Docs para trabajar en equipo', summary:'Varias personas editando el mismo documento.', time:'8 min', youtubeQuery:'como usar google docs para trabajar en equipo',
+    materials:['Cuenta de Google'],
+    steps:[
+      {icon:'search', action:'Entra a', target:'docs.google.com → "+" nuevo documento'},
+      {icon:'key', action:'Toca', target:'"Compartir" (arriba a la derecha)'},
+      {icon:'mail', action:'Escribe', target:'el correo de con quién compartir'},
+      {icon:'check', action:'Elige', target:'si puede editar o solo ver'}
+    ]
+  },
+  { id:'google-sheets-basico', cat:'tec', title:'Usar Google Sheets (hojas de cálculo)', summary:'Como Excel, pero todos editan a la vez.', time:'8 min', youtubeQuery:'como usar google sheets hojas de calculo',
+    materials:['Cuenta de Google'],
+    steps:[
+      {icon:'search', action:'Entra a', target:'sheets.google.com → "+" nueva hoja'},
+      {icon:'check', action:'Llena', target:'tus datos como en Excel'},
+      {icon:'key', action:'Comparte', target:'igual que en Google Docs'},
+      {icon:'check', action:'Revisa', target:'que se guarda solo, no hace falta guardar manual'}
+    ]
+  },
+  { id:'word-a-pdf', cat:'tec', title:'Convertir un Word a PDF', summary:'Para que nadie te lo edite por accidente.', time:'2 min', youtubeQuery:'como convertir un word a pdf desde el celular',
+    materials:['El documento de Word'],
+    steps:[
+      {icon:'search', action:'Abre', target:'el documento en Word'},
+      {icon:'move', action:'Toca', target:'"Compartir" o "Archivo" → "Exportar"'},
+      {icon:'check', action:'Elige', target:'"Guardar como PDF"'}
+    ]
+  },
+  { id:'traductor-integrado', cat:'tec', title:'Usar el traductor integrado del celular', summary:'Traduce textos sin cambiar de app.', time:'3 min', youtubeQuery:'como usar el traductor integrado del celular',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'globe', action:'Selecciona', target:'el texto que quieres traducir'},
+      {icon:'search', action:'Toca', target:'"Traducir" en el menú que aparece'},
+      {icon:'check', action:'Elige', target:'el idioma de destino'}
+    ]
+  },
+  { id:'nota-voz-transcribir', cat:'tec', title:'Grabar una nota de voz y transcribirla a texto', summary:'Para no escribir todo a mano.', time:'3 min', youtubeQuery:'como transcribir una nota de voz a texto',
+    materials:['Teclado con dictado (la mayoría ya lo trae)'],
+    steps:[
+      {icon:'search', action:'Toca', target:'el micrófono en tu teclado'},
+      {icon:'check', action:'Habla', target:'claro y con pausas entre ideas'},
+      {icon:'check', action:'Revisa', target:'y corrige lo que se transcribió mal'}
+    ]
+  },
+  { id:'calendario-juntas', cat:'tec', title:'Usar el calendario del celular para juntas', summary:'Para no se te olvide ni te empalmes.', time:'5 min', youtubeQuery:'como usar el calendario del celular para juntas',
+    materials:['App de Calendario (ya la trae el celular)'],
+    steps:[
+      {icon:'search', action:'Abre', target:'Calendario y toca "+"'},
+      {icon:'check', action:'Escribe', target:'el título, fecha y hora'},
+      {icon:'mail', action:'Agrega', target:'invitados si es junta con más gente'},
+      {icon:'check', action:'Activa', target:'un recordatorio antes de que empiece'}
+    ]
+  },
+  { id:'google-drive-compartir', cat:'tec', title:'Usar Google Drive para guardar y compartir archivos', summary:'Tus archivos accesibles desde cualquier celular.', time:'5 min', youtubeQuery:'como usar google drive para guardar y compartir archivos',
+    materials:['Cuenta de Google'],
+    steps:[
+      {icon:'cloud', action:'Abre', target:'Google Drive → toca "+"'},
+      {icon:'move', action:'Sube', target:'el archivo desde tu celular'},
+      {icon:'key', action:'Toca', target:'los tres puntos → "Compartir"'},
+      {icon:'mail', action:'Escribe', target:'el correo de con quién compartir'}
+    ]
+  },
+  { id:'dictado-por-voz', cat:'tec', title:'Escribir más rápido con dictado por voz', summary:'Para mensajes largos sin batallar con el teclado.', time:'2 min', youtubeQuery:'como activar el dictado por voz en mi celular',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'search', action:'Toca', target:'cualquier campo de texto'},
+      {icon:'search', action:'Toca', target:'el ícono de micrófono en el teclado'},
+      {icon:'check', action:'Habla', target:'y di "punto" o "coma" para puntuación'}
+    ]
+  },
+  { id:'organizar-carpetas-celular', cat:'tec', title:'Organizar carpetas en el celular', summary:'Para encontrar tus archivos rápido.', time:'10 min', youtubeQuery:'como organizar carpetas en mi celular',
+    materials:['App de "Archivos" (ya la trae el celular)'],
+    steps:[
+      {icon:'search', action:'Abre', target:'la app de "Archivos"'},
+      {icon:'box', action:'Toca', target:'"Crear carpeta nueva"'},
+      {icon:'move', action:'Mantén presionado', target:'un archivo para moverlo a esa carpeta'},
+      {icon:'check', action:'Repite', target:'agrupando por tema (trabajo, fotos, etc.)'}
+    ]
+  },
+  { id:'powerpoint-celular', cat:'tec', title:'Hacer una presentación desde el celular', summary:'PowerPoint sin necesitar computadora.', time:'15 min', youtubeQuery:'como hacer una presentacion en powerpoint desde el celular',
+    materials:['App de PowerPoint (gratis)'],
+    steps:[
+      {icon:'search', action:'Abre', target:'PowerPoint → "Presentación en blanco"'},
+      {icon:'check', action:'Toca', target:'"+" para agregar diapositivas'},
+      {icon:'image', action:'Agrega', target:'texto e imágenes tocando cada espacio'},
+      {icon:'check', action:'Guarda', target:'con nombre antes de salir'}
+    ]
+  },
+  { id:'comprimir-zip', cat:'tec', title:'Comprimir varios archivos en un ZIP', summary:'Para mandar muchos archivos de un jalón.', time:'3 min', youtubeQuery:'como comprimir archivos en zip desde el celular',
+    materials:['Los archivos a comprimir'],
+    steps:[
+      {icon:'search', action:'Abre', target:'la app de "Archivos"'},
+      {icon:'check', action:'Selecciona', target:'los archivos (mantén presionado el primero)'},
+      {icon:'compress', action:'Toca', target:'"Comprimir" o "Crear ZIP"'}
+    ]
+  },
+  { id:'multitarea-pantalla-dividida', cat:'tec', title:'Usar dos apps a la vez (pantalla dividida)', summary:'Para copiar datos de una app a otra sin salir.', time:'2 min', youtubeQuery:'como usar pantalla dividida en el celular',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'search', action:'Toca', target:'el botón de apps recientes (□ o gesto)'},
+      {icon:'search', action:'Mantén presionado', target:'el ícono de una app'},
+      {icon:'check', action:'Elige', target:'"Pantalla dividida"'},
+      {icon:'check', action:'Toca', target:'la segunda app para acompañarla'}
+    ]
+  },
+
   { id:'ahorro-navidad', cat:'dinero', title:'Crear un fondo para gastos de Navidad', summary:'Empieza a ahorrar desde ahora.', time:'5 min', youtubeQuery:'como ahorrar dinero para navidad',
     materials:['Cuenta bancaria o app de ahorro'],
     steps:[
@@ -1725,7 +1888,7 @@ const TUTORIALS = [
     ]
   },
 
-  { id:'cambiar-aceite-carro', producto:{ nombre:'Aceite de motor', link:'https://listado.mercadolibre.com.mx/aceite-de-motor' }, categoriaProfesional:'Mecánico', cat:'hogar', title:'Cambiar el aceite de tu carro', summary:'Mantenimiento esencial para principiantes.', time:'30 min', youtubeQuery:'como cambiar el aceite del carro paso a paso', costoPiezas:300, costoTaller:800,
+  { id:'cambiar-aceite-carro', recordatorioMeses:4, producto:{ nombre:'Aceite de motor', link:'https://listado.mercadolibre.com.mx/aceite-de-motor' }, categoriaProfesional:'Mecánico', cat:'hogar', title:'Cambiar el aceite de tu carro', summary:'Mantenimiento esencial para principiantes.', time:'30 min', youtubeQuery:'como cambiar el aceite del carro paso a paso', costoPiezas:300, costoTaller:800,
     materials:['Aceite nuevo (según tu carro)', 'Filtro nuevo', 'Llave de tuerca', 'Bandeja para aceite', 'Trapos'],
     steps:[
       {icon:'car', action:'Calienta', target:'el motor 3 minutos y apágalo'},
@@ -1739,7 +1902,7 @@ const TUTORIALS = [
       {icon:'check', action:'Verifica', target:'con la varilla que quede en el nivel correcto'}
     ]
   },
-  { id:'cambiar-balatas-carro', producto:{ nombre:'Balatas para auto', link:'https://listado.mercadolibre.com.mx/balatas-para-auto' }, categoriaProfesional:'Mecánico', cat:'hogar', title:'Cambiar las balatas del carro', summary:'Frenos frescos y seguros.', time:'45 min', youtubeQuery:'como cambiar las balatas del carro', costoPiezas:600, costoTaller:1500,
+  { id:'cambiar-balatas-carro', recordatorioMeses:12, producto:{ nombre:'Balatas para auto', link:'https://listado.mercadolibre.com.mx/balatas-para-auto' }, categoriaProfesional:'Mecánico', cat:'hogar', title:'Cambiar las balatas del carro', summary:'Frenos frescos y seguros.', time:'45 min', youtubeQuery:'como cambiar las balatas del carro', costoPiezas:600, costoTaller:1500,
     materials:['Balatas nuevas', 'Llave de cruz', 'Llave de tuerca', 'Destornillador'],
     steps:[
       {icon:'car', action:'Estaciona', target:'en lugar seguro y aplica freno de mano'},
@@ -1754,7 +1917,7 @@ const TUTORIALS = [
       {icon:'check', action:'Repite', target:'en las otras ruedas'}
     ]
   },
-  { id:'revisar-presion-llantas', cat:'hogar', title:'Revisar y ajustar la presión de las llantas', summary:'Cada mes para mejor rendimiento.', time:'10 min', youtubeQuery:'como revisar la presion de las llantas del carro', costoPiezas:0, costoTaller:50,
+  { id:'revisar-presion-llantas', recordatorioMeses:1, cat:'hogar', title:'Revisar y ajustar la presión de las llantas', summary:'Cada mes para mejor rendimiento.', time:'10 min', youtubeQuery:'como revisar la presion de las llantas del carro', costoPiezas:0, costoTaller:50,
     materials:['Manómetro', 'Compresor de aire'],
     steps:[
       {icon:'car', action:'Estaciona', target:'en lugar plano'},
@@ -1766,7 +1929,7 @@ const TUTORIALS = [
       {icon:'wrench', action:'Coloca', target:'la tapa de nuevo en todas'}
     ]
   },
-  { id:'limpiar-filtro-aire-carro', cat:'hogar', title:'Limpiar el filtro de aire del motor', summary:'Para que tu carro respire mejor.', time:'15 min', youtubeQuery:'como limpiar el filtro de aire del carro', costoPiezas:150, costoTaller:350,
+  { id:'limpiar-filtro-aire-carro', recordatorioMeses:6, cat:'hogar', title:'Limpiar el filtro de aire del motor', summary:'Para que tu carro respire mejor.', time:'15 min', youtubeQuery:'como limpiar el filtro de aire del carro', costoPiezas:150, costoTaller:350,
     materials:['Aspiradora', 'Trapo seco'],
     steps:[
       {icon:'car', action:'Abre', target:'el cofre'},
@@ -1778,7 +1941,7 @@ const TUTORIALS = [
       {icon:'wrench', action:'Cierra', target:'la caja de aire bien'}
     ]
   },
-  { id:'revisar-correa-ventilador', cat:'hogar', title:'Revisar la correa del ventilador', summary:'Señales de desgaste y cuándo cambiarla.', time:'10 min', youtubeQuery:'como revisar la correa del ventilador del carro', costoPiezas:0, costoTaller:150,
+  { id:'revisar-correa-ventilador', recordatorioMeses:12, cat:'hogar', title:'Revisar la correa del ventilador', summary:'Señales de desgaste y cuándo cambiarla.', time:'10 min', youtubeQuery:'como revisar la correa del ventilador del carro', costoPiezas:0, costoTaller:150,
     materials:['Linterna', 'Trapo'],
     steps:[
       {icon:'car', action:'Abre', target:'el cofre con el motor apagado'},
@@ -1789,7 +1952,7 @@ const TUTORIALS = [
       {icon:'check', action:'Si se ve bien', target:'cierra el cofre'}
     ]
   },
-  { id:'revisar-liquido-refrigerante', cat:'hogar', title:'Revisar el nivel de refrigerante', summary:'Para evitar sobrecalentamiento.', time:'5 min', youtubeQuery:'como revisar el liquido refrigerante del carro', costoPiezas:100, costoTaller:250,
+  { id:'revisar-liquido-refrigerante', recordatorioMeses:6, cat:'hogar', title:'Revisar el nivel de refrigerante', summary:'Para evitar sobrecalentamiento.', time:'5 min', youtubeQuery:'como revisar el liquido refrigerante del carro', costoPiezas:100, costoTaller:250,
     materials:['Trapo', 'Refrigerante del mismo tipo si hace falta'],
     steps:[
       {icon:'car', action:'Deja', target:'que el motor se enfríe 10 minutos'},
@@ -1799,7 +1962,7 @@ const TUTORIALS = [
       {icon:'clock', action:'Si se consume rápido', target:'busca una fuga', warn:'Nunca abras la tapa con el motor caliente, ¡quema!'}
     ]
   },
-  { id:'limpiar-bujias', cat:'hogar', title:'Limpiar o cambiar las bujías', summary:'Para mejor arranque y consumo.', time:'40 min', youtubeQuery:'como limpiar o cambiar las bujias del carro', costoPiezas:100, costoTaller:300,
+  { id:'limpiar-bujias', recordatorioMeses:12, cat:'hogar', title:'Limpiar o cambiar las bujías', summary:'Para mejor arranque y consumo.', time:'40 min', youtubeQuery:'como limpiar o cambiar las bujias del carro', costoPiezas:100, costoTaller:300,
     materials:['Bujías nuevas (si lo necesita)', 'Llave de bujías', 'Trapo'],
     steps:[
       {icon:'car', action:'Apaga', target:'el motor completamente'},
@@ -1951,6 +2114,173 @@ const TUTORIALS = [
       {icon:'search', action:'Toca', target:'la flecha ↖ y luego el elemento que quieras ver'},
       {icon:'gear', action:'Cambia', target:'valores de CSS ahí mismo para probar'},
       {icon:'check', action:'Recuerda', target:'que esos cambios no se guardan, solo son de prueba'}
+    ]
+  },
+
+  { id:'cuidados-basicos-perro', cat:'hogar', title:'Cuidados básicos de un perro', summary:'Lo esencial si acabas de adoptar uno.', time:'10 min', youtubeQuery:'cuidados basicos de un perro para principiantes',
+    materials:['Croquetas', 'Agua fresca', 'Cama o tapete'],
+    steps:[
+      {icon:'paw', action:'Dale', target:'agua fresca disponible todo el día'},
+      {icon:'clock', action:'Aliméntalo', target:'2 veces al día, a la misma hora'},
+      {icon:'paw', action:'Sácalo a pasear', target:'al menos 20-30 min diarios'},
+      {icon:'medkit', action:'Llévalo', target:'al veterinario para sus vacunas'}
+    ]
+  },
+  { id:'cuidados-basicos-gato', cat:'hogar', title:'Cuidados básicos de un gato', summary:'Lo esencial si acabas de adoptar uno.', time:'10 min', youtubeQuery:'cuidados basicos de un gato para principiantes',
+    materials:['Croquetas', 'Arena y arenero', 'Agua fresca'],
+    steps:[
+      {icon:'paw', action:'Coloca', target:'el arenero lejos de su comida'},
+      {icon:'sponge', action:'Limpia', target:'el arenero una vez al día'},
+      {icon:'paw', action:'Dale', target:'croquetas de buena calidad, sin cambiarlas seguido'},
+      {icon:'medkit', action:'Llévalo', target:'al veterinario para sus vacunas y esterilización'}
+    ]
+  },
+  { id:'primeros-auxilios-mascota', cat:'hogar', title:'Primeros auxilios básicos para tu mascota', summary:'Mientras llegas al veterinario.', time:'5 min', youtubeQuery:'primeros auxilios basicos para mascotas',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'shield', action:'Mantén la calma', target:'un animal asustado puede morder sin querer'},
+      {icon:'paw', action:'Si sangra', target:'presiona con un trapo limpio'},
+      {icon:'chat', action:'Llama', target:'a tu veterinario antes de dar cualquier medicamento', warn:'Nunca le des medicamento humano a una mascota sin indicación veterinaria.'},
+      {icon:'car', action:'Trasládalo', target:'con cuidado, evitando moverlo de más si hay fractura'}
+    ]
+  },
+  { id:'banar-perro-casa', cat:'hogar', title:'Bañar a tu perro en casa', summary:'Sin batallar ni que se escape.', time:'20 min', youtubeQuery:'como banar a mi perro en casa',
+    materials:['Shampoo para perros', 'Toalla', 'Agua tibia'],
+    steps:[
+      {icon:'paw', action:'Cepíllalo', target:'antes de mojarlo, para quitar pelo suelto'},
+      {icon:'drop', action:'Moja', target:'con agua tibia, evitando ojos y oídos'},
+      {icon:'sponge', action:'Aplica', target:'shampoo especial para perros, nunca de humano'},
+      {icon:'drop', action:'Enjuaga', target:'muy bien hasta que no quede jabón'},
+      {icon:'check', action:'Sécalo', target:'con toalla y manténlo en lugar cálido'}
+    ]
+  },
+  { id:'cortar-unas-mascota', cat:'hogar', title:'Cortar las uñas de tu mascota', summary:'Sin lastimarla.', time:'10 min', youtubeQuery:'como cortar las unas a mi perro o gato sin lastimarlo',
+    materials:['Cortaúñas para mascotas'],
+    steps:[
+      {icon:'paw', action:'Sostén', target:'la pata con firmeza pero sin apretar'},
+      {icon:'search', action:'Identifica', target:'la parte rosa de la uña (ahí no se corta)'},
+      {icon:'wrench', action:'Corta', target:'solo la puntita blanca/transparente', warn:'Si sangra, aplica un poco de harina o polvo estíptico para detenerlo.'},
+      {icon:'check', action:'Prémiala', target:'con una golosina al terminar'}
+    ]
+  },
+
+  { id:'dormir-mejor', cat:'hogar', title:'Dormir mejor, hábitos básicos', summary:'Para descansar de verdad.', time:'5 min', youtubeQuery:'como dormir mejor habitos basicos',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'clock', action:'Duerme', target:'y despierta a la misma hora todos los días'},
+      {icon:'plug', action:'Evita', target:'pantallas 30 min antes de dormir'},
+      {icon:'drop', action:'Evita', target:'cafeína después de la tarde'},
+      {icon:'check', action:'Mantén', target:'tu cuarto oscuro y fresco'}
+    ]
+  },
+  { id:'tomar-presion-arterial', cat:'hogar', title:'Tomar tu presión arterial en casa', summary:'Con un baumanómetro digital.', time:'5 min', youtubeQuery:'como tomar la presion arterial en casa correctamente',
+    materials:['Baumanómetro digital'],
+    steps:[
+      {icon:'clock', action:'Descansa', target:'sentado 5 minutos antes de medir'},
+      {icon:'heart', action:'Coloca', target:'el brazalete a la altura del corazón'},
+      {icon:'check', action:'Mantente quieto', target:'y en silencio durante la medición'},
+      {icon:'search', action:'Anota', target:'el resultado y la hora, para llevarlo a tu doctor'}
+    ]
+  },
+  { id:'medir-glucosa', cat:'hogar', title:'Medir tu glucosa con glucómetro', summary:'Paso a paso, sin complicarte.', time:'5 min', youtubeQuery:'como medir la glucosa con glucometro',
+    materials:['Glucómetro', 'Tiras reactivas', 'Lanceta', 'Alcohol'],
+    steps:[
+      {icon:'sponge', action:'Limpia', target:'tu dedo con alcohol y deja secar'},
+      {icon:'wrench', action:'Pica', target:'la punta del dedo con la lanceta'},
+      {icon:'drop', action:'Coloca', target:'la gota de sangre en la tira reactiva'},
+      {icon:'check', action:'Espera', target:'el resultado en pantalla y anótalo'}
+    ]
+  },
+  { id:'rutina-ejercicio-casa', cat:'hogar', title:'Empezar una rutina de ejercicio en casa', summary:'Sin equipo, sin gimnasio.', time:'20 min', youtubeQuery:'rutina de ejercicio en casa para principiantes',
+    materials:['Ropa cómoda', 'Un tapete'],
+    steps:[
+      {icon:'clock', action:'Calienta', target:'5 min moviendo brazos y piernas'},
+      {icon:'check', action:'Haz', target:'3 series de sentadillas, lagartijas y abdominales'},
+      {icon:'clock', action:'Descansa', target:'1 minuto entre cada serie'},
+      {icon:'check', action:'Estira', target:'al final para no amanecer adolorido'}
+    ]
+  },
+  { id:'manejar-estres', cat:'hogar', title:'Técnicas básicas para manejar el estrés', summary:'Para los días pesados.', time:'5 min', youtubeQuery:'tecnicas para manejar el estres rapido',
+    materials:['Ninguno'],
+    steps:[
+      {icon:'clock', action:'Respira', target:'contando 4 segundos al inhalar, 4 al exhalar'},
+      {icon:'check', action:'Identifica', target:'qué puedes controlar y qué no, en ese momento'},
+      {icon:'chat', action:'Habla', target:'con alguien de confianza sobre lo que sientes'},
+      {icon:'check', action:'Tómate', target:'pausas cortas durante el día, no solo al final'}
+    ]
+  },
+
+  { id:'dar-de-alta-negocio', cat:'dinero', title:'Dar de alta tu negocio ante el SAT', summary:'Régimen Simplificado de Confianza (RESICO).', time:'20 min', youtubeQuery:'como darme de alta en el sat como resico',
+    materials:['CURP', 'Comprobante de domicilio', 'Correo electrónico'],
+    steps:[
+      {icon:'globe', action:'Entra a', target:'sat.gob.mx → "Trámites del RFC"'},
+      {icon:'idcard', action:'Llena', target:'tus datos personales y de actividad'},
+      {icon:'briefcase', action:'Elige', target:'el régimen RESICO si tus ingresos son menores a 3.5 millones al año'},
+      {icon:'check', action:'Agenda', target:'tu cita si te la piden para firmar'}
+    ]
+  },
+  { id:'hacer-factura-electronica', cat:'dinero', title:'Hacer una factura electrónica simple', summary:'Con la herramienta gratis del SAT.', time:'10 min', youtubeQuery:'como hacer una factura electronica gratis sat',
+    materials:['RFC y contraseña del SAT', 'e.firma (para algunos casos)'],
+    steps:[
+      {icon:'globe', action:'Entra a', target:'"Genera tu factura" en sat.gob.mx'},
+      {icon:'idcard', action:'Ingresa', target:'los datos de quien te compró'},
+      {icon:'cash', action:'Escribe', target:'el concepto y el monto'},
+      {icon:'printer', action:'Descarga', target:'el PDF y el XML, mándaselos a tu cliente'}
+    ]
+  },
+  { id:'calcular-precio-venta', cat:'dinero', title:'Calcular el precio de venta de un producto', summary:'Para no perder dinero sin darte cuenta.', time:'10 min', youtubeQuery:'como calcular el precio de venta de un producto',
+    materials:['El costo de tu producto'],
+    steps:[
+      {icon:'cash', action:'Suma', target:'el costo del material y tu tiempo de trabajo'},
+      {icon:'percent', action:'Agrega', target:'tu ganancia (normalmente 30-50% sobre el costo)'},
+      {icon:'cash', action:'Suma', target:'gastos fijos (luz, empaque, envío) si aplica'},
+      {icon:'check', action:'Compara', target:'con la competencia antes de fijarlo'}
+    ]
+  },
+  { id:'abrir-cuenta-negocio', cat:'dinero', title:'Abrir una cuenta bancaria para tu negocio', summary:'Para separar tu dinero personal del negocio.', time:'30 min', youtubeQuery:'como abrir una cuenta bancaria para mi negocio',
+    materials:['INE', 'Comprobante de domicilio', 'RFC de tu negocio'],
+    steps:[
+      {icon:'globe', action:'Compara', target:'comisiones entre bancos antes de elegir'},
+      {icon:'idcard', action:'Lleva', target:'tus documentos a la sucursal o trámite en línea'},
+      {icon:'card', action:'Solicita', target:'la cuenta tipo "Persona Física con Actividad Empresarial"'},
+      {icon:'check', action:'Actívala', target:'y empieza a usarla solo para tu negocio'}
+    ]
+  },
+  { id:'vender-en-redes-sociales', cat:'dinero', title:'Empezar a vender en redes sociales', summary:'Lo básico para tu primera publicación.', time:'15 min', youtubeQuery:'como empezar a vender en redes sociales',
+    materials:['Fotos de tu producto', 'Cuenta de Facebook/Instagram'],
+    steps:[
+      {icon:'camera', action:'Toma fotos', target:'con buena luz natural, fondo limpio'},
+      {icon:'search', action:'Escribe', target:'una descripción clara: qué es, precio, cómo comprar'},
+      {icon:'chat', action:'Agrega', target:'tu WhatsApp o forma de contacto'},
+      {icon:'check', action:'Publica', target:'seguido, no solo una vez'}
+    ]
+  },
+
+  { id:'organizar-fiesta-cumpleanos', cat:'hogar', title:'Organizar una fiesta de cumpleaños económica', summary:'Sin gastar de más.', time:'30 min', youtubeQuery:'como organizar una fiesta de cumpleanos economica',
+    materials:['Lista de invitados', 'Presupuesto definido'],
+    steps:[
+      {icon:'cash', action:'Define', target:'tu presupuesto total antes de comprar algo'},
+      {icon:'cake', action:'Decide', target:'entre pastel comprado o hecho en casa (más barato)'},
+      {icon:'check', action:'Decora', target:'con globos y papel picado, es lo más barato'},
+      {icon:'chat', action:'Confirma', target:'invitados con unos días de anticipación'}
+    ]
+  },
+  { id:'armar-ofrenda-dia-muertos', cat:'hogar', title:'Armar una ofrenda de Día de Muertos', summary:'Los elementos tradicionales básicos.', time:'30 min', youtubeQuery:'como armar una ofrenda de dia de muertos tradicional',
+    materials:['Papel picado', 'Veladoras', 'Flores de cempasúchil', 'Foto del difunto', 'Comida y bebida que le gustaba'],
+    steps:[
+      {icon:'check', action:'Coloca', target:'la foto del difunto en el nivel más alto'},
+      {icon:'cake', action:'Pon', target:'su comida y bebida favorita'},
+      {icon:'check', action:'Agrega', target:'papel picado, flores y veladoras'},
+      {icon:'search', action:'Incluye', target:'un vaso de agua, para calmar la sed del camino'}
+    ]
+  },
+  { id:'decorar-arbol-navidad', cat:'hogar', title:'Decorar un árbol de Navidad', summary:'Que se vea parejo y bonito.', time:'40 min', youtubeQuery:'como decorar un arbol de navidad paso a paso',
+    materials:['Árbol', 'Luces', 'Esferas', 'Listón o adornos'],
+    steps:[
+      {icon:'check', action:'Coloca', target:'las luces primero, de adentro hacia afuera'},
+      {icon:'check', action:'Distribuye', target:'las esferas grandes primero, parejas por todo el árbol'},
+      {icon:'check', action:'Agrega', target:'esferas chicas para rellenar espacios vacíos'},
+      {icon:'check', action:'Termina', target:'con listones y la estrella o corona arriba'}
     ]
   }
 ];
@@ -2428,6 +2758,7 @@ function matchesSearch(t, q){
 function renderList(){
   const q = document.getElementById('searchInput').value.trim();
   const list = TUTORIALS.filter(t => {
+    if(currentCat === 'emergencia') return t.emergencia && matchesSearch(t, q);
     const catMatch = currentCat === 'all' || currentCat === 'favorites'
       ? currentCat !== 'favorites' || isFavorite(t.id)
       : t.cat === currentCat;
@@ -2616,6 +2947,24 @@ function openDetail(id){
   renderSteps();
   renderDetailFavorite();
   renderDetailNotes();
+
+  const relacionadasBox = document.getElementById('relacionadasBox');
+  if(relacionadasBox){
+    const relacionadas = TUTORIALS
+      .filter(x => x.cat === t.cat && x.id !== t.id)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+    if(relacionadas.length > 0){
+      relacionadasBox.classList.remove('hidden');
+      document.getElementById('relacionadasLista').innerHTML = relacionadas.map(r => {
+        const c = CATS[r.cat];
+        return `<a class="relacionada-item" data-id="${r.id}"><span class="tab ${c.class}"></span><span>${r.title}</span></a>`;
+      }).join('');
+    } else {
+      relacionadasBox.classList.add('hidden');
+    }
+  }
+
   document.getElementById('listView').classList.add('hidden');
   document.getElementById('detail').classList.add('open');
   document.getElementById('footerTip').style.display = 'none';
@@ -2656,6 +3005,7 @@ function toggleStep(i){
       AhorroModule.addSavings(t.id);
     }
     if(done.length === t.steps.length) marcarGuiaCompletada(t.id);
+    if(done.length === t.steps.length && t.recordatorioMeses) guardarRecordatorio(t.id, t.recordatorioMeses);
   }
   saveProgress(t.id, done);
   renderSteps();
@@ -2707,6 +3057,51 @@ function actualizarRacha(){
 
 function loadCompletadas(){
   try{ return JSON.parse(localStorage.getItem('guiasCompletadas') || '[]'); }catch(e){ return []; }
+}
+
+// ===== Bitácora de mantenimiento =====
+function loadBitacora(){
+  try{ return JSON.parse(localStorage.getItem('bitacoraMantenimiento') || '{}'); }catch(e){ return {}; }
+}
+
+function guardarRecordatorio(guiaId, meses){
+  const bitacora = loadBitacora();
+  const proxima = new Date();
+  proxima.setMonth(proxima.getMonth() + meses);
+  bitacora[guiaId] = { fechaProxima: fechaISO(proxima), meses };
+  localStorage.setItem('bitacoraMantenimiento', JSON.stringify(bitacora));
+  actualizarAlertaBitacora();
+}
+
+function actualizarAlertaBitacora(){
+  const bitacora = loadBitacora();
+  const hoy = fechaISO(new Date());
+  const hayVencidos = Object.values(bitacora).some(item => item.fechaProxima <= hoy);
+  const alerta = document.getElementById('bitacoraAlerta');
+  if(alerta) alerta.classList.toggle('hidden', !hayVencidos);
+}
+
+function renderBitacoraModal(){
+  const bitacora = loadBitacora();
+  const lista = document.getElementById('bitacoraLista');
+  const entradas = Object.entries(bitacora);
+
+  if(entradas.length === 0){
+    lista.innerHTML = '<p class="bitacora-vacio">Todavía no tienes nada en tu bitácora.<br>Completa una guía de mantenimiento (como "Cambiar el aceite") y aquí te avisaremos cuándo te toca otra vez.</p>';
+    return;
+  }
+
+  const hoy = fechaISO(new Date());
+  const ordenado = entradas.map(([id, item]) => {
+    const t = TUTORIALS.find(x => x.id === id);
+    return { id, titulo: t ? t.title : id, fechaProxima: item.fechaProxima, vencido: item.fechaProxima <= hoy };
+  }).sort((a,b) => a.fechaProxima.localeCompare(b.fechaProxima));
+
+  lista.innerHTML = ordenado.map(item => `
+    <div class="bitacora-item ${item.vencido ? 'vencido' : ''}" data-id="${item.id}">
+      <span class="bitacora-item-titulo">${item.titulo}</span>
+      <span class="bitacora-item-fecha mono">${item.vencido ? '¡Ya te toca!' : item.fechaProxima}</span>
+    </div>`).join('');
 }
 
 function marcarGuiaCompletada(id){
@@ -2916,6 +3311,15 @@ if(featuredRowEl){
   });
 }
 
+const relacionadasBoxEl = document.getElementById('relacionadasBox');
+if(relacionadasBoxEl){
+  relacionadasBoxEl.addEventListener('click', function(e){
+    const item = e.target.closest('.relacionada-item');
+    if(!item) return;
+    openDetail(item.dataset.id);
+  });
+}
+
 backBtn.addEventListener('click', closeDetail);
 document.querySelector('.favorite-detail')?.addEventListener('click', function(){
   if(!currentDetail) return;
@@ -2932,12 +3336,50 @@ if(langBtn){
 }
 
 const rachaBtn = document.getElementById('rachaBtn');
+
+const bitacoraBtn = document.getElementById('bitacoraBtn');
+const bitacoraModal = document.getElementById('bitacoraModal');
+const bitacoraClose = document.getElementById('bitacoraClose');
+if(bitacoraBtn){
+  bitacoraBtn.addEventListener('click', function(){
+    renderBitacoraModal();
+    bitacoraModal.classList.remove('hidden');
+  });
+}
+if(bitacoraClose) bitacoraClose.addEventListener('click', () => bitacoraModal.classList.add('hidden'));
+if(bitacoraModal){
+  bitacoraModal.addEventListener('click', function(e){
+    if(e.target === bitacoraModal){ bitacoraModal.classList.add('hidden'); return; }
+    const item = e.target.closest('.bitacora-item');
+    if(item){ bitacoraModal.classList.add('hidden'); openDetail(item.dataset.id); }
+  });
+}
+
+const emergenciaBtn = document.getElementById('emergenciaBtn');
+if(emergenciaBtn){
+  emergenciaBtn.addEventListener('click', function(){
+    closeDetail();
+    currentCat = 'emergencia';
+    searchInput.value = '';
+    renderChips();
+    renderList();
+    window.scrollTo(0,0);
+  });
+}
 if(rachaBtn){
   rachaBtn.addEventListener('click', function(){
     try{
       const data = JSON.parse(localStorage.getItem('rachaDiaria') || '{}');
       alert(`Racha actual: ${data.actual || 0} días\nTu mejor racha: ${data.mejor || 0} días`);
     }catch(e){}
+  });
+}
+
+const relacionadasListaEl = document.getElementById('relacionadasLista');
+if(relacionadasListaEl){
+  relacionadasListaEl.addEventListener('click', function(e){
+    const item = e.target.closest('.relacionada-item');
+    if(item) openDetail(item.dataset.id);
   });
 }
 
@@ -2960,7 +3402,7 @@ if(resetAllBtn){
     const claves = Object.keys(localStorage).filter(k =>
       k === 'appState' || k === 'guiasGeneradasIA' || k === 'guiasCompletadas' ||
       k === 'calificacionesGuias' || k === 'busquedasSinResultado' || k === 'clicsProductos' ||
-      k === 'geminiApiKey' || k === 'rachaDiaria' || k.startsWith('progreso_')
+      k === 'geminiApiKey' || k === 'rachaDiaria' || k === 'bitacoraMantenimiento' || k.startsWith('progreso_')
     );
     claves.forEach(k => localStorage.removeItem(k));
     location.reload();
@@ -3036,6 +3478,7 @@ async function iniciarApp(){
   renderList();
   actualizarBadgesCount();
   actualizarRacha();
+  actualizarAlertaBitacora();
   cargarLivesVenta();
 
   const misVideosSection = document.getElementById('misVideosSection');
@@ -3068,7 +3511,8 @@ const shareBtn = document.getElementById('shareBtn');
 if(shareBtn){
   shareBtn.addEventListener('click', function(){
     if(!currentDetail) return;
-    const url = location.origin + location.pathname + '#' + currentDetail.id;
+    const base = location.origin + location.pathname.replace(/index\.html$/, '');
+    const url = base + 'guias/' + currentDetail.id + '.html';
     const msg = `*${currentDetail.title}* — guía paso a paso:\n${url}`;
     window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
   });
